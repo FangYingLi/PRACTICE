@@ -2,7 +2,7 @@
 //  stacking.cpp
 //  gmx_stacking
 //
-//  Created by Yiming Tang on 09/04/2018.Revised by zengjy on 19/07/2021. test
+//  Created by Yiming Tang on 09/04/2018.
 //  Copyright © 2018 Yiming Tang. All rights reserved.
 //
 
@@ -18,38 +18,42 @@
 
 
 
-float stacking::calDistance(const coordinate atom11, const coordinate atom21)
+double stacking::calDistance(coordinate atom11, coordinate atom21)
 {
+    double x_1 = 0.0, y_1 = 0.0, z_1 = 0.0;
+    double x_2 = 0.0, y_2 = 0.0, z_2 = 0.0;
 
-    float x_1 = atom11.x;
-    float y_1 = atom11.y;
-    float z_1 = atom11.z;
+    x_1 = atom11.x;
+    y_1 = atom11.y;
+    z_1 = atom11.z;
 
-    float x_2 = atom21.x;
-    float y_2 = atom21.y;
-    float z_2 = atom21.z;
+    x_2 = atom21.x;
+    y_2 = atom21.y;
+    z_2 = atom21.y;
 
-    return (float)sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
+    return sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
 
 }
 
-float stacking::calDistance(const coordinate atom11, const coordinate atom12, const coordinate atom21, const coordinate atom22)
+double stacking::calDistance(coordinate atom11, coordinate atom12, coordinate atom21, coordinate atom22)
 {
+    double x_1 = 0.0, y_1 = 0.0, z_1 = 0.0;
+    double x_2 = 0.0, y_2 = 0.0, z_2 = 0.0;
 
-    float x_1 = (atom11.x + atom12.x) / 2;
-    float y_1 = (atom11.y + atom12.y) / 2;
-    float z_1 = (atom11.z + atom12.z) / 2;
+    x_1 = (atom11.x + atom12.x) / 2;
+    y_1 = (atom11.y + atom12.y) / 2;
+    z_1 = (atom11.z + atom12.z) / 2;
 
-    float x_2 = (atom21.x + atom22.x) / 2;
-    float y_2 = (atom21.y + atom22.y) / 2;
-    float z_2 = (atom21.z + atom22.z) / 2;
+    x_2 = (atom21.x + atom22.x) / 2;
+    y_2 = (atom21.y + atom22.y) / 2;
+    z_2 = (atom21.z + atom22.z) / 2;
 
-    return (float)sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
+    return sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
 
 }
 
-float stacking::calDistance(const coordinate atom11, const coordinate atom12, const coordinate atom13,
-                             const coordinate atom21, const coordinate atom22, const coordinate atom23)
+double stacking::calDistance(coordinate atom11, coordinate atom12, coordinate atom13, coordinate atom21,
+                             coordinate atom22, coordinate atom23)
 {
     double x_1 = 0.0, y_1 = 0.0, z_1 = 0.0;
     double x_2 = 0.0, y_2 = 0.0, z_2 = 0.0;
@@ -62,56 +66,60 @@ float stacking::calDistance(const coordinate atom11, const coordinate atom12, co
     y_2 = (atom21.y + atom22.y + atom23.y) / 3;
     z_2 = (atom21.z + atom22.z + atom23.z) / 3;
 
-    return (float)sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
+    return sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
 }
 
-float stacking::calDistance(const coordinate atom11, const coordinate atom12, const coordinate atom13, const coordinate atom14,
-                             const coordinate atom21, const coordinate atom22, const coordinate atom23, const coordinate atom24)
+double stacking::calDistance(coordinate atom11, coordinate atom12, coordinate atom13, coordinate atom14,
+                             coordinate atom21, coordinate atom22, coordinate atom23, coordinate atom24)
 {
+    double x_1 = 0.0, y_1 = 0.0, z_1 = 0.0;
+    double x_2 = 0.0, y_2 = 0.0, z_2 = 0.0;
 
+    x_1 = (atom11.x + atom12.x + atom13.x + atom14.x) / 4;
+    y_1 = (atom11.y + atom12.y + atom13.y + atom14.y) / 4;
+    z_1 = (atom11.z + atom12.z + atom13.z + atom14.z) / 4;
 
-    float x_1 = (atom11.x + atom12.x + atom13.x + atom14.x) / 4;
-    float y_1 = (atom11.y + atom12.y + atom13.y + atom14.y) / 4;
-    float z_1 = (atom11.z + atom12.z + atom13.z + atom14.z) / 4;
+    x_2 = (atom21.x + atom22.x + atom23.x + atom24.x) / 4;
+    y_2 = (atom21.y + atom22.y + atom23.y + atom24.y) / 4;
+    z_2 = (atom21.z + atom22.z + atom23.z + atom24.z) / 4;
 
-    float x_2 = (atom21.x + atom22.x + atom23.x + atom24.x) / 4;
-    float y_2 = (atom21.y + atom22.y + atom23.y + atom24.y) / 4;
-    float z_2 = (atom21.z + atom22.z + atom23.z + atom24.z) / 4;
-
-    return (float)sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
+    return sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
 }
 
-float stacking::calDistance(const coordinate atom11, const coordinate atom12, const coordinate atom13, const coordinate atom14,
-                             const coordinate atom15, const coordinate atom21, const coordinate atom22, const coordinate atom23,
-                             const coordinate atom24, const coordinate atom25)
+double stacking::calDistance(coordinate atom11, coordinate atom12, coordinate atom13, coordinate atom14,
+                             coordinate atom15, coordinate atom21, coordinate atom22, coordinate atom23,
+                             coordinate atom24, coordinate atom25)
 {
+    double x_1 = 0.0, y_1 = 0.0, z_1 = 0.0;
+    double x_2 = 0.0, y_2 = 0.0, z_2 = 0.0;
 
+    x_1 = (atom11.x + atom12.x + atom13.x + atom14.x + atom15.x) / 5;
+    y_1 = (atom11.y + atom12.y + atom13.y + atom14.y + atom15.y) / 5;
+    z_1 = (atom11.z + atom12.z + atom13.z + atom14.z + atom15.z) / 5;
 
-    float x_1 = (atom11.x + atom12.x + atom13.x + atom14.x + atom15.x) / 5;
-    float y_1 = (atom11.y + atom12.y + atom13.y + atom14.y + atom15.y) / 5;
-    float z_1 = (atom11.z + atom12.z + atom13.z + atom14.z + atom15.z) / 5;
+    x_2 = (atom21.x + atom22.x + atom23.x + atom24.x + atom25.x) / 5;
+    y_2 = (atom21.y + atom22.y + atom23.y + atom24.y + atom25.y) / 5;
+    z_2 = (atom21.z + atom22.z + atom23.z + atom24.z + atom25.z) / 5;
 
-    float x_2 = (atom21.x + atom22.x + atom23.x + atom24.x + atom25.x) / 5;
-    float y_2 = (atom21.y + atom22.y + atom23.y + atom24.y + atom25.y) / 5;
-    float z_2 = (atom21.z + atom22.z + atom23.z + atom24.z + atom25.z) / 5;
-
-    return (float)sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
+    return sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
 }
 
-float stacking::calDistance(coordinate atom11, coordinate atom12, coordinate atom13, coordinate atom14,
+double stacking::calDistance(coordinate atom11, coordinate atom12, coordinate atom13, coordinate atom14,
                              coordinate atom15, coordinate atom16, coordinate atom21, coordinate atom22,
                              coordinate atom23, coordinate atom24, coordinate atom25, coordinate atom26)
 {
+    double x_1 = 0.0, y_1 = 0.0, z_1 = 0.0;
+    double x_2 = 0.0, y_2 = 0.0, z_2 = 0.0;
 
-    float x_1 = (atom11.x + atom12.x + atom13.x + atom14.x + atom15.x + atom16.x) / 6;
-    float y_1 = (atom11.y + atom12.y + atom13.y + atom14.y + atom15.y + atom16.y) / 6;
-    float z_1 = (atom11.z + atom12.z + atom13.z + atom14.z + atom15.z + atom16.z) / 6;
+    x_1 = (atom11.x + atom12.x + atom13.x + atom14.x + atom15.x + atom16.x) / 6;
+    y_1 = (atom11.y + atom12.y + atom13.y + atom14.y + atom15.y + atom16.y) / 6;
+    z_1 = (atom11.z + atom12.z + atom13.z + atom14.z + atom15.z + atom16.z) / 6;
 
-    float x_2 = (atom21.x + atom22.x + atom23.x + atom24.x + atom25.x + atom26.x) / 6;
-    float y_2 = (atom21.y + atom22.y + atom23.y + atom24.y + atom25.y + atom26.y) / 6;
-    float z_2 = (atom21.z + atom22.z + atom23.z + atom24.z + atom25.z + atom26.z) / 6;
+    x_2 = (atom21.x + atom22.x + atom23.x + atom24.x + atom25.x + atom26.x) / 6;
+    y_2 = (atom21.y + atom22.y + atom23.y + atom24.y + atom25.y + atom26.y) / 6;
+    z_2 = (atom21.z + atom22.z + atom23.z + atom24.z + atom25.z + atom26.z) / 6;
 
-    return (float)sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
+    return sqrt( pow(x_1 - x_2, 2.0) + pow(y_1 - y_2, 2.0) + pow(z_1 - z_2, 2.0));
 }
 
 /*
@@ -196,38 +204,39 @@ double stacking::calDistance(ConstArrayRef<rvec> Group1, ConstArrayRef<rvec> Gro
 }
 */
 
-//求3个原子的平面的法向量，两个法向量之间的夹角
-float stacking::calAngle(coordinate atom11, coordinate atom12, coordinate atom13,
+double stacking::calAngle(coordinate atom11, coordinate atom12, coordinate atom13,
                           coordinate atom21, coordinate atom22, coordinate atom23) {
-    float a1 = ((atom12.y - atom11.y) * (atom13.z - atom11.z) - (atom12.z - atom11.z) * (atom13.y - atom11.y));
-    float b1 = ((atom12.z - atom11.z) * (atom13.x - atom11.x) - (atom12.x - atom11.x) * (atom13.z - atom11.z));
-    float c1 = ((atom12.x - atom11.x) * (atom13.y - atom11.y) - (atom12.y - atom11.y) * (atom13.x - atom11.x));
+    double a1 = ((atom12.y - atom11.y) * (atom13.z - atom11.z) - (atom12.z - atom11.z) * (atom13.y - atom11.y));
+    double b1 = ((atom12.z - atom11.z) * (atom13.x - atom11.x) - (atom12.x - atom11.x) * (atom13.z - atom11.z));
+    double c1 = ((atom12.x - atom11.x) * (atom13.y - atom11.y) - (atom12.y - atom11.y) * (atom13.x - atom11.x));
 
-    float a2 = ((atom22.y - atom21.y) * (atom23.z - atom21.z) - (atom22.z - atom21.z) * (atom23.y - atom21.y));
-    float b2 = ((atom22.z - atom21.z) * (atom23.x - atom21.x) - (atom22.x - atom21.x) * (atom23.z - atom21.z));
-    float c2 = ((atom22.x - atom21.x) * (atom23.y - atom21.y) - (atom22.y - atom21.y) * (atom23.x - atom21.x));
+    double a2 = ((atom22.y - atom21.y) * (atom23.z - atom21.z) - (atom22.z - atom21.z) * (atom23.y - atom21.y));
+    double b2 = ((atom22.z - atom21.z) * (atom23.x - atom21.x) - (atom22.x - atom21.x) * (atom23.z - atom21.z));
+    double c2 = ((atom22.x - atom21.x) * (atom23.y - atom21.y) - (atom22.y - atom21.y) * (atom23.x - atom21.x));
 
 
-    float angle = (float)(acos((a1 * a2 + b1 * b2 + c1 * c2) / sqrt(a1 * a1 + b1 * b1 + c1 * c1) /
-                        sqrt(a2 * a2 + b2 * b2 + c2 * c2)) / (M_PI) * 180);
+    double angle = acos((a1 * a2 + b1 * b2 + c1 * c2) / sqrt(a1 * a1 + b1 * b1 + c1 * c1) /
+                        sqrt(a2 * a2 + b2 * b2 + c2 * c2)) / (M_PI) * 180;
 
-    return min(abs(angle - 0), abs(180 - angle));
+    double myAngle = min(abs(angle - 0), abs(180 - angle));
 
+    return myAngle;
 }
 
-float stacking::calAngle(coordinate atom11, coordinate atom12,
+double stacking::calAngle(coordinate atom11, coordinate atom12,
                 coordinate atom21, coordinate atom22) {
-    float a1 = atom12.x - atom11.x;
-    float b1 = atom12.y - atom11.y;
-    float c1 = atom12.z - atom11.z;
+    double a1 = atom12.x - atom11.x;
+    double b1 = atom12.y - atom11.y;
+    double c1 = atom12.z - atom11.z;
 
-    float a2 = atom22.x - atom21.x;
-    float b2 = atom22.y - atom21.y;
-    float c2 = atom22.z - atom21.z;
+    double a2 = atom22.x - atom21.x;
+    double b2 = atom22.y - atom21.y;
+    double c2 = atom22.z - atom21.z;
 
-    return (float)(acos((a1 * a2 + b1 * b2 + c1 * c2) / sqrt(a1 * a1 + b1 * b1 + c1 * c1) /
-                        sqrt(a2 * a2 + b2 * b2 + c2 * c2)) / (M_PI) * 180);
+    double angle = acos((a1 * a2 + b1 * b2 + c1 * c2) / sqrt(a1 * a1 + b1 * b1 + c1 * c1) /
+                        sqrt(a2 * a2 + b2 * b2 + c2 * c2)) / (M_PI) * 180;
 
+    return angle;
 }
 
 stacking::stacking(): cutoff_(1.5), maxDistance_(1.2), maxAngle_(90.0), stepDistance_(0.01), stepAngle_(1.0)
@@ -239,7 +248,6 @@ void stacking::initOptions(gmx::IOptionsContainer *options, gmx::TrajectoryAnaly
 {
     static const char *const desc[] =
     {
-        "use -hbond to calculate hbond distance an angle ,-ref to select donor ,-hydrogen to select hydrogen (need ordered with donor),-sel to select acceptor. by zengjy. \n",
         "Stacking Free Energy Surface (SFES) Calculator by Yiming Tang @ Fudan. \n",
         "This Tool calculates the Joint Probabilit Density (JPD) of two molecules",
         "as a function of angle (0-90) - distance (0-1.2). The tool ouputs the free",
@@ -282,15 +290,11 @@ void stacking::initOptions(gmx::IOptionsContainer *options, gmx::TrajectoryAnaly
     
     options->addOption(SelectionOption("ref")
                        .storeVector(&ref_).required().multiValue()
-                       .description("Reference Groups of benzenes to calculate angle and distance / donor"));
-
-    options->addOption(SelectionOption("hydrogen")
-                       .storeVector(&hyd_).required().multiValue()
-                       .description("Reference Groups of hydrogen")); 
- 
+                       .description("Reference Groups of benzenes to calculate angle and distance"));
+    
     options->addOption(SelectionOption("sel")
                        .storeVector(&sel_).required().multiValue()
-                       .description("Selection Groups of benzenes to calculate angle and distance / acceptor"));
+                       .description("Selection Groups of benzenes to calculate angle and distance"));
     
     options->addOption(DoubleOption("temperature").store(&temperature_).defaultValue(298)
                        .description("Temperature in K for energy calculation"));
@@ -298,25 +302,13 @@ void stacking::initOptions(gmx::IOptionsContainer *options, gmx::TrajectoryAnaly
     options->addOption(BooleanOption("vector")
                        .store(&vector_).required().defaultValue(false)
                        .description("Whether selections are processed as vectors when calculating angles."));
-
-    options->addOption(BooleanOption("hbond")
-                       .store(&hbond_).required().defaultValue(false)
-                       .description("Whether calculate for hbond."));					   
-
-    options->addOption(BooleanOption("inter_residue")
-                               .store(&not_same_residue_).required().defaultValue(false)
-                               .description("Whether only contacts between different residues are considered."));
-
-    options->addOption(BooleanOption("intra_residue")
-                               .store(&only_same_residue_).required().defaultValue(false)
-                               .description("Whether only contacts between group pairs in same residue are considered."));
 }
 
 void stacking::initAnalysis(const gmx::TrajectoryAnalysisSettings &settings, const gmx::TopologyInformation &top)
 {
     //atoms_ = top.topology()->atoms;
     //top_   = top.topology();
-
+    
  
     if(vector_ && maxAngle_ == 90)
     {
@@ -324,56 +316,16 @@ void stacking::initAnalysis(const gmx::TrajectoryAnalysisSettings &settings, con
     }
 
    // initial data set columns and rows
-
-    try
-    {
-        probability_ = new unsigned long*[(int)(maxDistance_ / stepDistance_)];
-        for(int i = 0; i < (int)(maxDistance_ / stepDistance_); i++)
-        {
-            probability_[i] = new unsigned long[(int)(maxAngle_ / stepAngle_)];
-        }
-
-    }
-    catch(std::bad_alloc& exc)
-    {
-        cerr << "ERROR: Fails to alloc memory for probability matrix." << endl;
-        exit(1);
-    }
-
-    for(int i = 0; i< ((int)(maxDistance_ / stepDistance_)); i++)
-    {
-        for(int j = 0; j < (int)(maxAngle_ / stepAngle_); j++)
-        {
-            probability_[i][j] = 0;
-        }
-    }
-
-    data_probability_.setDataSetCount(1);
-    data_probability_.setColumnCount(0,1);
-
-    /*
+    
     data_probability_.setDataSetCount((int)(maxDistance_ / stepDistance_));
     
     for (int i = 0; i < (int)(maxDistance_ / stepDistance_); i++)
     {
         data_probability_.setColumnCount(i, (int)(maxAngle_ / stepAngle_));
     }
-
-
+    
     avem_probability_.reset(new AnalysisDataAverageModule());
     data_probability_.addModule(avem_probability_);
-
-    */
-
-    top_   = top.topology();
-	atoms_ = top.topology()->atoms;
-    
-    if(not_same_residue_ && only_same_residue_)
-    {
-        cerr << "ERROR: Specified both inter_residue and intra_residue flags. You must be kidding me!" << endl;
-        exit(1);
-    }
-
     
 }
 
@@ -381,9 +333,8 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
 {
     AnalysisDataHandle dhProbability = pdata->dataHandle(data_probability_);
     dhProbability.startFrame(frnr, fr.time);
+    
     // Constructed a new temp all-zero matrix
-
-    /*
     
     int **tempProbability = new int*[(int)(maxDistance_ / stepDistance_)];
     for(int i = 0; i < (int)(maxDistance_ / stepDistance_); i++)
@@ -397,73 +348,34 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
             tempProbability[i][j] = 0;
         }
     }
-     */
-
+    
     // Begin analysis
     
     for (size_t gRef = 0 ; gRef < ref_.size(); ++gRef)
     {
         for (size_t gSel = 0; gSel < sel_.size(); ++gSel)
         {
-
-
             //cout << "ref_size = " << ref_.size() << endl;
             //cout << "sel_size = " << sel_.size() << endl;
             
             
             const Selection &ref = pdata->parallelSelection(ref_[gRef]);
             const Selection &sel = pdata->parallelSelection(sel_[gSel]);
-			const Selection &hyd = pdata->parallelSelection(hyd_[gRef]);
             
             if (ref.atomIndices()[0] == sel.atomIndices()[0])
             {
                 continue;
             }
+            
 
-            // Stript out contacts from same residue
-
-            if (not_same_residue_ && (atoms_.atom[ref.atomIndices()[0]].resind) == (atoms_.atom[sel.atomIndices()[0]].resind))
-            {
-                continue;
-            }
-            // Stript out contacts not from same residue
-
-
-
-            if (only_same_residue_ && (atoms_.atom[ref.atomIndices()[0]].resind) != (atoms_.atom[sel.atomIndices()[0]].resind))
-            {
-                continue;
-            }
-
-            // cout << atoms_.atom[ref.atomIndices()[0]].resind << '\t' << (atoms_.atom[sel.atomIndices()[0]].resind) << endl;
-
-            // Stript out non-contacting residues
-
-            if (abs(ref.coordinates()[0][0] - sel.coordinates()[0][0]) > cutoff_ * 2)
-            {
-                continue;
-            }
-
-            if (abs(ref.coordinates()[0][1] - sel.coordinates()[0][1]) > cutoff_ * 2)
-            {
-                continue;
-            }
-
-            if (abs(ref.coordinates()[0][2] - sel.coordinates()[0][2]) > cutoff_ * 2)
-            {
-                continue;
-            }
-
-            // cout << "calculating" << endl;
-
-
+            
             ////// Calculating distance //////////////
             
 
 
             coordinate *molecule1;
             coordinate *molecule2;
-            float tempDistance;
+            double tempDistance;
 
 
             int atomCount = (int) min(ref.coordinates().size(), sel.coordinates().size());
@@ -476,10 +388,6 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
                     molecule1[i].x = ref.coordinates()[i][0];
                     molecule1[i].y = ref.coordinates()[i][1];
                     molecule1[i].z = ref.coordinates()[i][2];
-					
-					/*cout<<endl<< ref.coordinates()[i][0];
-                    cout<<endl<< ref.coordinates()[i][1];
-                    cout<<endl<< ref.coordinates()[i][2];*/
                 }
 
                 molecule2 = new coordinate[atomCount];
@@ -488,10 +396,6 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
                     molecule2[i].x = sel.coordinates()[i][0];
                     molecule2[i].y = sel.coordinates()[i][1];
                     molecule2[i].z = sel.coordinates()[i][2];
-					
-					/*cout<<endl<< sel.coordinates()[i][0];
-                    cout<<endl<< sel.coordinates()[i][1];
-                    cout<<endl<< sel.coordinates()[i][2];*/
                 }
 
             }
@@ -558,14 +462,12 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
 
 
             }
-			
-			/// if hbond atomCount=1,don't need to modify///
-						
 
             /// Calculating Angle ////////////////////
 
+            atomCount = (int) min(ref.coordinates().size(), sel.coordinates().size());
 
-            float tempAngle;
+            double tempAngle;
 
             if(vector_) {
                 if (atomCount == 2 || atomCount == 3) {
@@ -605,14 +507,6 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
                         exit(1);
                     }
                 }
-			} else if(hbond_){
-				/// if hbond_,vector1=donor->hydrogen,vector2=acceptor->donor///
-				coordinate p11 = {ref.coordinates()[0][0], ref.coordinates()[0][1], ref.coordinates()[0][2]};
-				coordinate p12 = {hyd.coordinates()[0][0], hyd.coordinates()[0][1], hyd.coordinates()[0][2]};
-				coordinate p21 = {ref.coordinates()[0][0], ref.coordinates()[0][1], ref.coordinates()[0][2]};
-				coordinate p22 = {sel.coordinates()[0][0], sel.coordinates()[0][1], sel.coordinates()[0][2]};
-				
-				tempAngle = calAngle(p11, p12, p21, p22);				
             } else {
 
                 coordinate p11 = {ref.coordinates()[0][0], ref.coordinates()[0][1], ref.coordinates()[0][2]};
@@ -626,23 +520,16 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
                 tempAngle = calAngle(p11, p12, p13, p21, p22, p23);
 
             }
-			
-
-
-            //cout << endl<<"distance = " << tempDistance << ", angle = " << tempAngle << endl;
 
 
             
             if (tempDistance <= maxDistance_ && tempAngle <= maxAngle_ )
             {
-                probability_[(int)floor(tempDistance / stepDistance_)][(int)floor(tempAngle/stepAngle_)] += 1;
-                //cout<< endl<< (int)floor(tempDistance / stepDistance_) << "    "<< (int)floor(tempAngle/stepAngle_)<<endl;
-				// cout << "Miao" << endl;
-                //tempProbability[(int)floor(tempDistance / stepDistance_)][(int)floor(tempAngle/stepAngle_)] += 1;
+                tempProbability[(int)floor(tempDistance / stepDistance_)][(int)floor(tempAngle/stepAngle_)] += 1;
             }
         }
     }
-    /*
+    
     for(int i = 0; i < maxDistance_ / stepDistance_; i++)
     {
         for(int j = 0; j < maxAngle_ / stepAngle_; j++)
@@ -655,10 +542,6 @@ void stacking::analyzeFrame(int frnr, const t_trxframe &fr, t_pbc *pbc, gmx::Tra
             }
         }
     }
-    */
-
-    dhProbability.selectDataSet(0);
-    dhProbability.setPoint(0,0);
     
     dhProbability.finishFrame();
     
@@ -710,8 +593,7 @@ void stacking::writeOutput()
     {
         for(int j = 0; j < (int)(maxAngle_ / stepAngle_); j++)
         {
-            matProbability[i][j] = probability_[i][j] / (real)data_probability_.frameCount();
-            //matProbability[i][j] = avem_probability_->average(i, j) ;
+            matProbability[i][j] = avem_probability_->average(i, j) ;
             //cout << i << '\t' << j << '\t' << avem_probability_->average(i, j) << '\t' << avem_probability_->average(i, j) / (float)scale << '\t' << matProbability[i][j] << endl;
             matEnergy[i][j]      = real(- 8.31447 * temperature_ * log(matProbability[i][j] / (float)scale) * 0.0002389);
         }
@@ -776,6 +658,13 @@ void stacking::writeOutput()
     }
     
 }
+
+
+
+
+
+
+
 
 
 
