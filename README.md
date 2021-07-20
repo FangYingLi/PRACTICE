@@ -1,2 +1,2 @@
-# gmx_stacking
-rewrite bu zengjy, to calculate for hbond.
+# gmx_stacking_hbond
+rewrite by zengjy, to calculate for hbond.
